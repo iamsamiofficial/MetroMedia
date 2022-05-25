@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1069308389558",
+    "project_id": "metromedia-d7d31",
+    "storage_bucket": "metromedia-d7d31.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1069308389558:android:4df275e5e89bb679435e17",
+        "android_client_info": {
+          "package_name": "com.example.metro_media"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1069308389558-1qpnt7fh8nvmr0qgr70pfdfmvii0uc2l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBM1z9fhEFeehWdxuy9iy-QNOZ0me9dRko"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1069308389558-1qpnt7fh8nvmr0qgr70pfdfmvii0uc2l.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
