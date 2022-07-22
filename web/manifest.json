@@ -1,6 +1,6 @@
 {
-    "name": "metro_media",
-    "short_name": "metro_media",
+    "name": "metromedia",
+    "short_name": "metromedia",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

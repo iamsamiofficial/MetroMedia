@@ -1,85 +1,65 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:metro_media/providers/user_provider.dart';
-import 'package:metro_media/responsiveLayout/mobile_screen_layout.dart';
-import 'package:metro_media/responsiveLayout/responsive_layout_screen.dart';
-import 'package:metro_media/responsiveLayout/web_screen_layout.dart';
-import 'package:metro_media/screens/login_screen.dart';
-import 'package:metro_media/screens/signup_screen.dart';
-import 'package:metro_media/utils/colors.dart';
+import 'package:metromedia/constants/Constantcolors.dart';
+import 'package:metromedia/screens/AltProfile/alt_profile_helper.dart';
+import 'package:metromedia/screens/Chatroom/ChatroomHelper.dart';
+import 'package:metromedia/screens/Chatroom/singlechatroomhelper.dart';
+import 'package:metromedia/screens/Feed/FeedHelpers.dart';
+import 'package:metromedia/screens/Homepage/HomepageHelper.dart';
+import 'package:metromedia/screens/LandingPage/landingHelpers.dart';
+import 'package:metromedia/screens/LandingPage/landingServices.dart';
+import 'package:metromedia/screens/LandingPage/landingUtils.dart';
+import 'package:metromedia/screens/Messaging/groupMessageHelper.dart';
+import 'package:metromedia/screens/Messaging/singleMessageHelper.dart';
+import 'package:metromedia/screens/Profile/ProfileHelpers.dart';
+import 'package:metromedia/screens/SplashScreen/splashScreen.dart';
+import 'package:metromedia/services/Authentication.dart';
+import 'package:metromedia/services/FirebaseOperations.dart';
+import 'package:metromedia/utils/PostOption.dart';
+import 'package:metromedia/utils/UploadPost.dart';
 import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  
-  if(kIsWeb){
-    await Firebase.initializeApp(
-      options: const FirebaseOptions(
-        apiKey: "AIzaSyC_AX-SvA7TVem3Ga0yvJ5YF88oPnR8B6k",
-         appId: "1:1069308389558:web:d48439f69f541085435e17", 
-         messagingSenderId: "1069308389558", 
-         projectId: "metromedia-d7d31",
-         storageBucket: "metromedia-d7d31.appspot.com",
-         ),
-    );
-  }
-  else{
-    await Firebase.initializeApp();
-  }
-  
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({ Key? key }) : super(key: key);
+  const MyApp({Key? key}) : super(key: key);
 
+  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    ConstantColors constantColors = ConstantColors();
     return MultiProvider(
-      providers: [
-        ChangeNotifierProvider(create: (_) => UserProvider(),),
-      ],
       child: MaterialApp(
-        title: 'Metro Media',
-        theme: ThemeData.dark().copyWith(
-          scaffoldBackgroundColor: mobileBackgroundColor,
-        ),
+        home: Splashscreen(),
         debugShowCheckedModeBanner: false,
-        home: StreamBuilder(
-          stream: FirebaseAuth.instance.authStateChanges(),
-          builder:(context,snapshot){
-            if(snapshot.connectionState == ConnectionState.active){
-              if(snapshot.hasData){
-                return const ResponsiveLayout(
-                webScreenLayout: WebScreenLayout(),
-                mobileScreenLayout: MobileScreenLayout(),
-                );
-            }else if (snapshot.hasError) {
-              return  Center(
-                child: Text('${snapshot.error}'),
-              );
-            }
-            }
-            if(snapshot.connectionState == ConnectionState.waiting){
-                return const Center(
-                  child: CircularProgressIndicator(
-                    color: primaryColor,
-                  ),
-                );
-              }
-           return const LoginScreen(); 
-}
-
-  
-          
+        theme: ThemeData(
+          accentColor: constantColors.blueColor,
+          fontFamily: 'Poppins',
+          canvasColor: Colors.transparent,
+          ),
         ),
-        // home: const ResponsiveLayout(
-        //   mobileScreenLayout: MobileScreenLayout(),
-        //   webScreenLayout: WebScreenLayout(),
-        // ),
-      ),
-    );
+      providers: [
+        ChangeNotifierProvider(create: (_)=> SingleChatroomHelper()),
+        ChangeNotifierProvider(create: (_)=> SingleMessageHelper()),
+        ChangeNotifierProvider(create: (_)=> GroupMessageHelper()),
+        ChangeNotifierProvider(create: (_)=> ChatroomHelper()),
+        ChangeNotifierProvider(create: (_)=> AltProfileHelper()),
+        ChangeNotifierProvider(create: (_)=> PostFunctions()),
+        ChangeNotifierProvider(create: (_)=> FeedHelpers()),
+        ChangeNotifierProvider(create: (_)=> UploadPost()),
+        ChangeNotifierProvider(create: (_)=> ProfileHelpers()),
+        ChangeNotifierProvider(create: (_)=> HomepageHelpers()),
+        ChangeNotifierProvider(create: (_)=> LandingUtils()),
+        ChangeNotifierProvider(create: (_)=> FirebaseOperations()),
+        ChangeNotifierProvider(create: (_)=> LandingService()),
+        ChangeNotifierProvider(create: (_)=> Authentication()),
+        ChangeNotifierProvider(create: (_)=> LandingHelpers()),
+        
+      ]);
+    
   }
 }
