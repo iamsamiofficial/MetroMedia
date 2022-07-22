@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.metro_media">
+    package="com.example.metromedia">
    <application
-        android:label="metro_media"
+        android:label="metromedia"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

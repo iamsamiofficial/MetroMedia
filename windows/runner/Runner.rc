@@ -90,12 +90,12 @@ BEGIN
         BLOCK "040904e4"
         BEGIN
             VALUE "CompanyName", "com.example" "\0"
-            VALUE "FileDescription", "metro_media" "\0"
+            VALUE "FileDescription", "metromedia" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "metro_media" "\0"
+            VALUE "InternalName", "metromedia" "\0"
             VALUE "LegalCopyright", "Copyright (C) 2022 com.example. All rights reserved." "\0"
-            VALUE "OriginalFilename", "metro_media.exe" "\0"
-            VALUE "ProductName", "metro_media" "\0"
+            VALUE "OriginalFilename", "metromedia.exe" "\0"
+            VALUE "ProductName", "metromedia" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END
